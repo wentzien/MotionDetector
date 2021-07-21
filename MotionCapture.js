@@ -122,8 +122,10 @@ const MotionCapture = class {
             }
         }
 
-        this.#drawMotionBoxCaptureCanvas();
-        // this.#drawMotionBoxMotionCanvas();
+        if (score > 0) {
+            this.#drawMotionBoxCaptureCanvas();
+            // this.#drawMotionBoxMotionCanvas();
+        }
 
         this.motionBox.x.min = frameWidth;
         this.motionBox.y.min = frameWidth;
