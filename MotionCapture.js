@@ -22,7 +22,8 @@ const MotionCapture = class {
             y: {
                 min: 0,
                 max: 0
-            }};
+            }
+        };
 
         this.score = settings.scoreRef || document.createElement("span");
 
@@ -150,7 +151,8 @@ const MotionCapture = class {
         const {min: xMin, max: xMax} = this.motionBox.x;
         const {min: yMin, max: yMax} = this.motionBox.y;
         captureContext.strokeRect(xMin, yMin, xMax - xMin, yMax - yMin);
-        captureContext.strokeStyle = "#c70c0c";
+        captureContext.strokeStyle = "#ff0000";
+
         // console.log("xMin: ", xMin, "yMin: s", yMin, "xMax: ", xMax, "yMax: ", yMax);
     }
 
