@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Motion Capture</title>
+</head>
+<body>
+<video id="webcam-video"></video>
+
+<canvas id="motion-canvas"></canvas>
+<canvas id="capture-canvas"></canvas>
+
+<script src="MotionCapture.js"></script>
+
+<span id="motion-score">???</span>
+<script>
+    const webcamVideo = document.getElementById("webcam-video");
+
+    const motionCanvas = document.getElementById("motion-canvas");
+    const captureCanvas = document.getElementById("capture-canvas");
+
+    const motionScore = document.getElementById("motion-score");
+
+    settings = {
+        videoRef: webcamVideo,
+        motionCanvasRef: motionCanvas,
+        captureCanvasRef: captureCanvas,
+        scoreRef: motionScore
+    };
+
+    const motionCapture = new MotionCapture(settings);
+    motionCapture.start();
+</script>
+</body>
+</html>
