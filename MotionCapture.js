@@ -14,7 +14,7 @@ const MotionCapture = class {
 
         const {frameWidth, frameHeight} = this.settings;
 
-        this.settings.pixelDiffThreshold = 100;
+        this.settings.pixelDiffThreshold = settings.pixelDiffThreshold || 16;
 
         this.motionBox = {
             x: {
