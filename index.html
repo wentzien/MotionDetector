@@ -3,18 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Motion Capture</title>
-</head>
-<body>
-<video id="webcam-video"></video>
 
-<canvas id="motion-canvas"></canvas>
-<canvas id="capture-canvas"></canvas>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .score {
+            width: 100%;
+            margin: 10px;
+        }
+
+        canvas {
+            border-radius: 20px;
+            margin: 10px
+        }
+    </style>
+</head>
+<!--<video id="webcam-video"></video>-->
+
+<div class="container">
+    <canvas id="motion-canvas"></canvas>
+    <canvas id="capture-canvas"></canvas>
+    <div class="score container">
+        <span>Motion Score: </span>
+        <span id="motion-score">???</span>
+    </div>
+</div>
 
 <script src="MotionCapture.js"></script>
-
-<span id="motion-score">???</span>
 <script>
-    const webcamVideo = document.getElementById("webcam-video");
+    // const webcamVideo = document.getElementById("webcam-video");
 
     const motionCanvas = document.getElementById("motion-canvas");
     const captureCanvas = document.getElementById("capture-canvas");
@@ -22,7 +43,7 @@
     const motionScore = document.getElementById("motion-score");
 
     settings = {
-        videoRef: webcamVideo,
+        // videoRef: webcamVideo,
         motionCanvasRef: motionCanvas,
         captureCanvasRef: captureCanvas,
         scoreRef: motionScore
