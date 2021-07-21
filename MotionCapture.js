@@ -6,6 +6,8 @@ const MotionCapture = class {
 
         this.settings = {
             captureIntervalTime: settings.captureIntervalTime || 100,
+            showMotionBox: settings.showMotionBox || true,
+            motionBoxColor: settings.motionBoxColor || "#ff0000",
             frameWidth: settings.frameWidth || 400,
             frameHeight: settings.frameHeight || 300
         };
@@ -104,7 +106,7 @@ const MotionCapture = class {
     }
 
     #getDifference(diffImageData) {
-        const {pixelDiffThreshold, frameWidth, frameHeight} = this.settings;
+        const {pixelDiffThreshold, frameWidth, showMotionBox} = this.settings;
         let rgba = diffImageData.data;
 
         let score = 0;
@@ -122,7 +124,7 @@ const MotionCapture = class {
             }
         }
 
-        if (score > 0) {
+        if (score > 0 && showMotionBox) {
             this.#drawMotionBoxCaptureCanvas();
             // this.#drawMotionBoxMotionCanvas();
         }
@@ -150,10 +152,11 @@ const MotionCapture = class {
 
     #drawMotionBoxCaptureCanvas() {
         const {captureContext} = this;
+        const {motionBoxColor} = this.settings;
         const {min: xMin, max: xMax} = this.motionBox.x;
         const {min: yMin, max: yMax} = this.motionBox.y;
         captureContext.strokeRect(xMin, yMin, xMax - xMin, yMax - yMin);
-        captureContext.strokeStyle = "#ff0000";
+        captureContext.strokeStyle = motionBoxColor;
 
         // console.log("xMin: ", xMin, "yMin: s", yMin, "xMax: ", xMax, "yMax: ", yMax);
     }
