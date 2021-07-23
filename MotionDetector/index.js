@@ -1,8 +1,10 @@
-const MotionCapture = class {
+const MotionDetector = class {
     constructor(settings) {
         this.stream = null;
         this.video = settings.videoRef || document.createElement("video");
         this.oldCapturedImage = false;
+        this.downloadTimer = 5;
+        this.downloadCounter = 0;
 
         this.settings = {
             captureIntervalTime: settings.captureIntervalTime || 100,
@@ -112,11 +114,12 @@ const MotionCapture = class {
         let score = 0;
 
         for (let i = 0; i < rgba.length; i += 4) {
-            const pixelDiff = rgba[i] * 0.3 + rgba[i + 1] * 0.6 + rgba[i + 2] * 0.1;
+            const pixelDiff = rgba[i] / 3 + rgba[i + 1] / 3 + rgba[i + 2] / 3;
+
             const normalized = Math.min(255, pixelDiff * (255 / pixelDiffThreshold));
-            rgba[i] = 0;
+            rgba[i] = normalized;
             rgba[i + 1] = normalized;
-            rgba[i + 2] = 0;
+            rgba[i + 2] = normalized;
 
             if (pixelDiff >= pixelDiffThreshold) {
                 score++;
@@ -129,12 +132,38 @@ const MotionCapture = class {
             // this.#drawMotionBoxMotionCanvas();
         }
 
+        // const {downloadTimer} = this;
+        // let {downloadCounter} = this;
+        //
+        // if (downloadCounter === downloadTimer) {
+        //     this.#downloadCaptureCanvas();
+        //     this.downloadCounter = 0
+        // } else {
+        //     this.downloadCounter++;
+        // }
+
         this.motionBox.x.min = frameWidth;
         this.motionBox.y.min = frameWidth;
         this.motionBox.x.max = 0;
         this.motionBox.y.max = 0;
 
         return {score};
+    }
+
+    #downloadCaptureCanvas() {
+        const {captureCanvas} = this;
+        const link = document.createElement("a");
+        link.href = captureCanvas.toDataURL();
+        link.download = "captureCanvas.png";
+        link.click();
+    }
+
+    #downloadMotionCanvas() {
+        const {motionCanvas} = this;
+        const link = document.createElement("a");
+        link.href = motionCanvas.toDataURL();
+        link.download = "motionCanvas.png";
+        link.click();
     }
 
     #calcMotionBoxPixels(index) {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Motion Capture</title>
+    <title>Motion Detector</title>
 
     <style>
         .container {
@@ -22,6 +22,7 @@
         }
     </style>
 </head>
+<body>
 <!--<video id="webcam-video"></video>-->
 
 <div class="container">
@@ -33,7 +34,7 @@
     </div>
 </div>
 
-<script src="MotionCapture.js"></script>
+<script src="MotionCapture/index.js"></script>
 <script>
     // const webcamVideo = document.getElementById("webcam-video");
 
@@ -46,11 +47,12 @@
         // videoRef: webcamVideo,
         motionCanvasRef: motionCanvas,
         captureCanvasRef: captureCanvas,
-        scoreRef: motionScore
+        scoreRef: motionScore,
+        pixelDiffThreshold: 100
     };
 
-    const motionCapture = new MotionCapture(settings);
-    motionCapture.start();
+    const motionDetector = new MotionDetector(settings);
+    motionDetector.start();
 </script>
 </body>
 </html>

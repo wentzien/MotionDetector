@@ -1,0 +1,25 @@
+{
+  "name": "motiondetector",
+  "version": "1.0.0",
+  "description": "Capture of motion in the webcam.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wentzien/mMotionDetector.git"
+  },
+  "keywords": [
+    "motion",
+    "capture",
+    "detection",
+    "webcam"
+  ],
+  "author": "Dennis Wentzien",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wentzien/MotionDetector/issues"
+  },
+  "homepage": "https://github.com/wentzien/MotionDetector#readme"
+}
