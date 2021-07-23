@@ -16,7 +16,7 @@ const MotionDetector = class {
 
         const {frameWidth, frameHeight} = this.settings;
 
-        this.settings.pixelDiffThreshold = settings.pixelDiffThreshold || 16;
+        this.settings.sensitivity = settings.sensitivity || 16;
 
         this.motionBox = {
             x: {
@@ -108,7 +108,7 @@ const MotionDetector = class {
     }
 
     #getDifference(diffImageData) {
-        const {pixelDiffThreshold, frameWidth, showMotionBox} = this.settings;
+        const {sensitivity, frameWidth, showMotionBox} = this.settings;
         let rgba = diffImageData.data;
 
         let score = 0;
@@ -116,12 +116,12 @@ const MotionDetector = class {
         for (let i = 0; i < rgba.length; i += 4) {
             const pixelDiff = rgba[i] / 3 + rgba[i + 1] / 3 + rgba[i + 2] / 3;
 
-            const normalized = Math.min(255, pixelDiff * (255 / pixelDiffThreshold));
+            const normalized = Math.min(255, pixelDiff * (255 / sensitivity));
             rgba[i] = normalized;
             rgba[i + 1] = normalized;
             rgba[i + 2] = normalized;
 
-            if (pixelDiff >= pixelDiffThreshold) {
+            if (pixelDiff >= sensitivity) {
                 score++;
                 this.#calcMotionBoxPixels(i / 4);
             }
@@ -175,8 +175,6 @@ const MotionDetector = class {
         this.motionBox.y.min = Math.min(this.motionBox.y.min, y);
         this.motionBox.x.max = Math.max(this.motionBox.x.max, x);
         this.motionBox.y.max = Math.max(this.motionBox.y.max, y);
-
-        // check if x or y is outer the actual box ?
     }
 
     #drawMotionBoxCaptureCanvas() {

@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<script src="MotionCapture/index.js"></script>
+<script src="index.js"></script>
 <script>
     // const webcamVideo = document.getElementById("webcam-video");
 
@@ -48,7 +48,7 @@
         motionCanvasRef: motionCanvas,
         captureCanvasRef: captureCanvas,
         scoreRef: motionScore,
-        pixelDiffThreshold: 100
+        sensitivity: 100
     };
 
     const motionDetector = new MotionDetector(settings);
