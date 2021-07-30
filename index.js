@@ -11,12 +11,11 @@ const MotionDetector = class {
             showMotionBox: settings.showMotionBox || true,
             motionBoxColor: settings.motionBoxColor || "#ff0000",
             frameWidth: settings.frameWidth || 400,
-            frameHeight: settings.frameHeight || 300
+            frameHeight: settings.frameHeight || 300,
+            sensitivity: settings.sensitivity || 16
         };
 
         const {frameWidth, frameHeight} = this.settings;
-
-        this.settings.sensitivity = settings.sensitivity || 16;
 
         this.motionBox = {
             x: {

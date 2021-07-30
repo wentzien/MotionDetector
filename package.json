@@ -1,6 +1,6 @@
 {
   "name": "motiondetector",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Capture of motion in the webcam.",
   "main": "index.js",
   "scripts": {
